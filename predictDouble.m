@@ -14,7 +14,7 @@ m = length(X);
 theta = zeros(2,1);
 
 % Add a 0 column to X
-X = [zeros(m,1) X];
+X = [ones(m,1) X];
 
 % Plot data
 figure(1);
@@ -28,19 +28,19 @@ plot(X(:,2),y);
 
 % Compute the initial Cost
 J = costFunction(X,y,theta);
-fprintf("Initial cost: %f\n",  J);
-fprintf("\n");
+fprintf("Computing initial cost...\n");
+fprintf("%f\n\n",  J);
 
 %% ==================== Gradient descent ====================
 
-alpha = [0.01 0.03 0.05 0.1 0.3 0.5];
-
+fprintf('Running Gradient Descent ...\n')
+alpha = [0.05 0.1 0.3 0.5 0.55 0.60 0.65 0.70];
 num_iters = 100;
 
 for i=1:length(alpha)
     
     theta = gradientDescent(X,y,theta,alpha(i),num_iters);
-    fprintf("Theta found by gradient descent: %f, %f˙\n",  theta(1),theta(2));
+    fprintf("Theta found by gradient descent (alpha=%.2f): %.5f, %.5f˙\n", alpha(i), theta(1),theta(2));
 
     % Plot the linear fit
     hold on;
