@@ -1,0 +1,1 @@
+function = plotJ(X,y,theta);

@@ -30,6 +30,7 @@ plot(X(:,2),y);
 J = costFunction(X,y,theta);
 fprintf("Computing initial cost...\n");
 fprintf("%f\n\n",  J);
+f2_legends = "";
 
 %% ==================== Gradient descent ====================
 
@@ -39,18 +40,25 @@ num_iters = 100;
 
 for i=1:length(alpha)
     
-    theta = gradientDescent(X,y,theta,alpha(i),num_iters);
+    [theta,J_history] = gradientDescent(X,y,theta,alpha(i),num_iters);
     fprintf("Theta found by gradient descent (alpha=%.2f): %.5f, %.5f˙\n", alpha(i), theta(1),theta(2));
 
     % Plot the linear fit
+    figure(1);
     hold on;
     plot(X(:,2),(X*theta));
     f1_legends = [f1_legends;mat2str(alpha(i))];
     legend(f1_legends);
-    
+
+    % Plot cost history
+    figure(2);
+    hold on;
+    plot(J_history(:,1),J_history(:,2));
+    f2_legends = [f2_legends;mat2str(alpha(i))];
+    legend(f2_legends);
 end
 
 % predictions
 fprintf("\n");
-fprintf("For value 12.3,  we predict a result of %f\n",  [0 12.3]*theta);
-fprintf("For value 5,  we predict a result of %f\n",  [0 5]*theta);
+fprintf("For value 12.3,  we predict a result of %f\n",  [1 12.3] * theta);
+fprintf("For value 5,  we predict a result of %f\n",  [1 5] * theta);
