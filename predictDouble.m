@@ -66,8 +66,8 @@ fprintf("For value 5,  we predict a result of %f\n",  [1 5] * theta);
 %% ==================== Optimizing using fminunc ====================
 fprintf("\nOptimizing using fminunc...\n");
 options = optimset('GradObj', 'on', 'MaxIter', 100);
-[theta, cost] = fminunc(@(t)(costFunction(X, y, t)), initial_theta, options);
-fprintf("Theta: %.5f, %.5f˙| cost: %.5f\n", theta(1),theta(2), cost);
+[theta, cost,info, o] = fminunc(@(t)(costFunction(X, y, t)), initial_theta, options);
+fprintf("Theta: %.5f, %.5f˙| cost: %.5f\n | iterations: %i", theta(1),theta(2), cost, o.iterations);
 
 %% ==================== Computing theta using normal equation ====================
 fprintf("\nComputing theta using normal equation...\n");
