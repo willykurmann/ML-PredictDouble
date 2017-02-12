@@ -1,4 +1,4 @@
-%% ML - Preidct the double of a value using linear regression
+%% ML - Predict the double of a value using linear regression
 
 %% ==================== Initialization ====================
 
@@ -21,8 +21,11 @@ figure(1);
 title ("Arbitrary title");
 xlabel ("X");
 ylabel ("y (double X)");
-f1_legends = ["original"];
-plot(X(:,2),y);
+f1_legends = ["Original"];
+
+f1_X = X(1:5:length(X),2);
+f1_y = y(1:5:length(y),1);
+plot(f1_X,f1_y,"ko","markersize", 4);
 
 %% ==================== Cost function ====================
 
@@ -67,7 +70,7 @@ fprintf("For value 5,  we predict a result of %f\n",  [1 5] * theta);
 fprintf("\nOptimizing using fminunc...\n");
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 [theta, cost,info, o] = fminunc(@(t)(costFunction(X, y, t)), initial_theta, options);
-fprintf("Theta: %.5f, %.5f˙| cost: %.5f\n | iterations: %i", theta(1),theta(2), cost, o.iterations);
+fprintf("Theta: %.5f, %.5f˙| cost: %.5f | iterations: %i", theta(1),theta(2), cost, o.iterations);
 
 %% ==================== Computing theta using normal equation ====================
 fprintf("\nComputing theta using normal equation...\n");
