@@ -35,8 +35,8 @@ f2_legends = "";
 %% ==================== Gradient descent ====================
 
 fprintf('Running Gradient Descent ...\n')
-alpha = [0.05 0.1 0.3 0.5 0.55 0.60 0.65 0.70];
-num_iters = 100;
+alpha = [0.05 0.1 0.3 0.5 0.6 0.8 1];
+num_iters = 500;
 
 for i=1:length(alpha)
     
